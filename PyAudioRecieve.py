@@ -3,7 +3,7 @@ import socket
 
 # IP address and port to listen on
 listen_ip = '0.0.0.0'
-listen_port = 1234
+listen_port = 1138
 
 # Audio parameters
 sample_rate = 48000
