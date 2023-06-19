@@ -1,30 +1,48 @@
+#⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢉⣴⣶⣤⠀⣿⣿⣿
+#⡿⢛⣉⣉⣉⣉⡛⠻⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⣡⣴⠏⠁⠀⡚⠀⢸⣿⣿
+#⠁⣿⠉⢀⡉⠉⢿⣷⣄⠈⠉⠁⣠⣀⣤⡀⣤⣤⣀⣴⠂⢺⠧⠀⠀⠀⠀⠀⣾⣿⣿
+#⠀⢷⣀⠀⠀⠀⠈⠙⣷⠀⠀⣿⣿⣿⣿⣿⢿⣿⡟⠃⠠⢄⣀⢀⡴⠀⣠⣾⣿⣿⣿
+#⣧⠈⠣⣦⠀⠀⠀⠀⠉⠸⠛⠃⠉⠋⠹⠀⠃⠁⠀⠀⠀⠺⣟⣷⣦⣄⠙⠿⣿⣿⣿
+#⣿⣇⢈⢿⣷⣾⣦⡤⢴⣿⣶⡀⢠⣔⣤⣤⡀⠀⠲⣾⣿⣶⣿⣿⣿⣿⣷⣄⠈⢻
+#⣿⠏⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⡻⣿⠀⠘⠿⡟⠡⠄⢉⡼⢿⣿⣿⣦⠈
+#⡏⣨⣿1⣿3⣿8⣿⣿⠟⡁⠐⠃⠈⠀⠐⠀⠀⣀⢠⡤⣾⠃⠀⠉⠛⠛⢠
+#⠁⣿⣿⣿⣿⣿⣿⣿⠏⠁⠘⠿⣶⣤⠴⠶⢟⣰⣶⣾⣿⣷⣤⣀⠀⠀⠀⠀⣠⣾
+#⡀⢿⣿⣿⣿⡿⠋⠁⠀⠀⠀⠀⠉⠁⢠⣴⣿⣿⣿⣿⢿⣟⠿⣿⡆⠀⢀⣾⣿⣿
+#⣷⡄⠛⠟⠃⠀⠀⠀⠀⠀⠀⢠⣤⣶⣿⣿⣿⣿⣿⡃⠈⠁⠀⠘⣡⣾⣿⣿⣿⣿
+#⣿⣿⣶⣤⣤⣤⣄⣀⣀⣀⣀⣀⣈⣛⣉⣉⡙⠋⠋⠁⠀⢀⣠⣾⣿⣿⣿⣿⣿
+#⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+#⣿⣿⣿⣿                         ⣿⣿⣿⣿⣿
+#⣿⣿⣿⣿  Github.com/RaXx00n/    ⣿⣿⣿⣿⣿
+#⣿⣿⣿⣿                         ⣿⣿⣿⣿⣿
+#⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+
 import pyaudio
 import socket
 
-# IP address and port to listen on
+## Where it's gonna listen
 listen_ip = '0.0.0.0'
 listen_port = 1138
 
-# Audio parameters
+#x# Audio parameters
 sample_rate = 48000
 frames_per_buffer = 4096
-buffer_size = frames_per_buffer * 8  # Adjust buffer size to accommodate larger audio packets
+buffer_size = frames_per_buffer * 8 
 
-# Create a UDP socket for receiving audio data
+#x# Create a UDP socket
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 server_socket.bind((listen_ip, listen_port))
 
-# Initialize PyAudio
+#x# Initialize PyAudio
 audio = pyaudio.PyAudio()
 
-# Open the audio stream for playback
+#x# Open the audio stream for playback
 playback_stream = audio.open(format=pyaudio.paInt16,
                              channels=2,
                              rate=sample_rate,
                              output=True,
                              frames_per_buffer=frames_per_buffer)
 
-# Start receiving and playing audio
+#x# Start receiving and playing audio
 while True:
     # Receive audio data from the network
     audio_data, _ = server_socket.recvfrom(buffer_size)
