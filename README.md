@@ -1,6 +1,6 @@
 # PyAudioUDP
 
-Rrun PyAudioSend.py on the computer sending the audio and PyAudioRecieve.py on the output computer.
+Run PyAudioSend.py on the computer sending the audio and PyAudioRecieve.py on the output computer.
 
 To fix issue with audio playing through speakers on both computers:
 
